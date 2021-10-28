@@ -6,15 +6,18 @@ using System.Net;
 
 public class MenuManager : MonoBehaviour
 {
-    public Text adresseIP;
 
+    public Text adresseIP;
     private string previousIP;
+
+    public Dropdown DResolution;
+
     public void Update()
     {
         string hostName = Dns.GetHostName();
         IPHostEntry host = Dns.GetHostEntry(hostName);
         string IP = "";
-        // Code inspiré de StackOverflow pour savoir comment récupéré l'adresse IPV4 local.
+        // Code inspirÃ© de StackOverflow pour savoir comment rï¿½cupï¿½rï¿½ l'adresse IPV4 local.
         foreach (IPAddress ip in host.AddressList)
         {
             if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
@@ -41,6 +44,25 @@ public class MenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void ApplySettings()
+    {
+        switch (DResolution.value)
+        {
+            case 0:
+                Screen.SetResolution(720,480,true);
+                break;
+            case 1:
+                Screen.SetResolution(1280,720,true);
+                break;
+            case 2:
+                Screen.SetResolution(1440,900,true);
+                break;
+            case 3:
+                Screen.SetResolution(1080,1920,true);
+                break;
+        }
     }
 
 }
