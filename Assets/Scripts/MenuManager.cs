@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
 
     public void Update()
     {
+        /*
         string hostName = Dns.GetHostName();
         IPHostEntry host = Dns.GetHostEntry(hostName);
         string IP = "";
@@ -29,7 +30,7 @@ public class MenuManager : MonoBehaviour
         {
             previousIP = IP;
             adresseIP.text = "Adresse IP : " + IP;
-        }
+        }*/
     }
     public void DisablePanel(GameObject Panel)
     {
@@ -65,4 +66,8 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void playSound(AudioSource audio)
+    {
+        audio.PlayOneShot(audio.clip);
+    }
 }
