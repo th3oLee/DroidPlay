@@ -12,6 +12,9 @@ public class GameControl : MonoBehaviour
     public GameObject victoryText;
     public GameObject gameOverText;
 
+    //MANETTE QUI JOUE
+    public RemoteServerSide playingRemote;
+
     private void Awake()
     {
         if (instance == null)
@@ -24,15 +27,32 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (gameOver || victory)
+        {
+            if (!playingRemote.isConsumed && playingRemote.lastInput == "A")
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+    }
+
     public void Victory()
     {
         victory = true;
         victoryText.SetActive(true);
+        
     }
 
     public void GameOver()
     {
         gameOver = true;
         gameOverText.SetActive(true);
+    }
+
+    public void RegisterRemote(RemoteServerSide remote)
+    {
+        playingRemote = remote;
     }
 }
